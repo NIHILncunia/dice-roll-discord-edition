@@ -6,7 +6,9 @@ const Command = require('./Command');
 const Event = require('./Event');
 const config = require('../../bot.config');
 
-const { prefix, version, author, } = config;
+const {
+  prefix, version, author, lastUpdate,
+} = config;
 
 // 봇이 모든 기능을 수행할 수 있게 만든다.
 const intents = new Intents(32767);
@@ -27,6 +29,7 @@ class DiceRoll extends Client {
     this.prefix = prefix;
     this.version = version;
     this.author = author;
+    this.lastUpdate = lastUpdate;
   }
 
   /**

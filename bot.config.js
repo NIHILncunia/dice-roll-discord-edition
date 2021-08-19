@@ -4,4 +4,5 @@ module.exports = {
   prefix: '+',
   version,
   author,
+  lastUpdate: '2021-08-19',
 };

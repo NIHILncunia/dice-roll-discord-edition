@@ -28,7 +28,7 @@ module.exports = new Command({
         inline: true,
       }, {
         name: '최종수정일',
-        value: getDate(new Date('2021-08-17')),
+        value: getDate(new Date(client.lastUpdate)),
         inline: true,
       })
       .setColor('#bd0000');
