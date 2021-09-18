@@ -170,12 +170,12 @@ module.exports = new Command({
         modTotal = modArray.reduce((pre, crr) => Number(pre) + Number(crr), 0);
 
         const result = (
-          `\n**[ 총합 ]**\n` +
-          `${subValue} → **${totalResult + modTotal}**\n` +
-          `\n**[ 상세 결과 ]**\n` +
-          `${rollResult.join('')}` +
-          `\n**[ 보정치 ]**\n` +
-          `${modResult}\n`
+          `\n**[ 총합 ]**\n`
+          + `${subValue} → **${totalResult + modTotal}**\n`
+          + `\n**[ 상세 결과 ]**\n`
+          + `${rollResult.join('')}`
+          + `\n**[ 보정치 ]**\n`
+          + `${modResult}\n`
         );
 
         resultArray.push(result);
@@ -203,11 +203,11 @@ module.exports = new Command({
       }
 
       message.channel.send(
-        `${userId}\n` +
-        `\`\`\`` +
-        `${typeString}` +
-        `\`\`\`` +
-        `${resultArray.join('\n- - - - - - - - - - - - - - - - - - - -\n')}`
+        `${userId}\n`
+        + `\`\`\``
+        + `${typeString}`
+        + `\`\`\``
+        + `${resultArray.join('\n- - - - - - - - - - - - - - - - - - - -\n')}`
       );
 
       resultArray = [];
