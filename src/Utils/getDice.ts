@@ -1,10 +1,10 @@
-/**
- * @param {string} dice
- * @param {string} type
- */
-module.exports = (dice, type) => {
+const getDice = (dice: string, type: string) => {
   const dicesString = /\w+(?=[D])/i;
   const suffixString = /(?<=d)[0-9.]+/i;
+
+  let roll: number;
+  let rollArray: number[] = [];
+  const multiBox: number[][] = [];
 
   if (dice.includes('*')) {
     const newDiceArray = dice.split('*');
@@ -18,14 +18,7 @@ module.exports = (dice, type) => {
     const suffixArray = newDice.match(suffixString);
     const suffix = Number(suffixArray[0]);
 
-    /** @type {number} */
-    let roll;
-    /** @type {number[]} */
-    let rollArray = [];
-    /** @type {number[][]} */
-    const multiBox = [];
-
-    for (let i = 0; i < multiple; i++) {
+    for (let i = 0; i < Number(multiple); i++) {
       for (let j = 0; j < dices; j++) {
         switch (type) {
           case 'normal':
@@ -56,11 +49,6 @@ module.exports = (dice, type) => {
     const suffixArray = dice.match(suffixString);
     const suffix = Number(suffixArray[0]);
 
-    /** @type {number} */
-    let roll;
-    /** @type {number[]} */
-    const rollArray = [];
-
     for (let i = 0; i < dices; i++) {
       switch (type) {
         case 'normal':
@@ -82,3 +70,5 @@ module.exports = (dice, type) => {
     return rollArray;
   }
 };
+
+export default getDice;

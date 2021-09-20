@@ -1,59 +1,43 @@
-const Command = require('../Structures/Command');
-const getDice = require('../utils/getDice');
+import { ICommand, Roll } from '../../Types';
+import getDice from '../../Utils/getDice';
 
-/** @type {string[]} */
-let inputArray;
-/** @type {string[]} */
-let subValueArray;
-/** @type {string} */
-let subValue;
-/** @type {string} */
-let lastValue;
-/** @type {string} */
-let dice;
-/** @type {number} */
-let pMod;
-/** @type {number} */
-let mMod;
-/** @type {number[]} */
-let modArray = [];
-/**
- * @typedef {object} Roll
- * @property {string[]} diceBox
- * @property {number[]} rollBox
- * @property {number[]} rollTotal
- */
-/** @type {Roll} */
-const roll = {
+let inputArray: string[];
+let subValueArray: string[];
+let subValue: string;
+let lastValue: string;
+let dice: string;
+let pMod: number;
+let mMod: number;
+let modArray: number[] = [];
+
+const roll: Roll = {
   diceBox: [],
   rollBox: [],
   rollTotal: [],
 };
-/** @type {number} */
-let modTotal;
-/** @type {string[]} */
-let resultArray = [];
-/** @type {string} */
-let diceInput;
-/** @type {string} */
-let type;
 
-module.exports = new Command({
-  id: 4,
+let modTotal: number;
+let resultArray: string[] = [];
+let diceInput: string;
+let type: string;
+
+export const command: ICommand = {
+  id: 5,
   name: 'roll',
   description: '주사위를 굴립니다! 주사위에 대한 설명은 +주사위 명령어를 이용하세요.',
-  async run(message, args, client, userId) {
+  aliases: [],
+  run: (client, message, args, userId) => {
     if (message.content === '+roll') {
       message.channel.send(`${userId} **에러 1:** 값이 없습니다. 주사위식을 입력해야 합니다.`);
     } else {
       if (args[1] === 'min') {
-        diceInput = args.slice(2).join(' ');
+        diceInput = args.slice(1).join(' ');
         type = 'min';
       } else if (args[1] === 'max') {
-        diceInput = args.slice(2).join(' ');
+        diceInput = args.slice(1).join(' ');
         type = 'max';
       } else {
-        diceInput = args.slice(1).join(' ');
+        diceInput = args.slice(0).join(' ');
         type = 'normal';
       }
 
@@ -109,9 +93,9 @@ module.exports = new Command({
               const newDice = splitDice[0];
               const multiple = splitDice[1];
 
-              roll.rollBox = getDice(dice, type);
+              roll.rollBox = getDice(dice, type) as number[][];
 
-              for (let i = 0; i < multiple; i++) {
+              for (let i = 0; i < Number(multiple); i++) {
                 roll.diceBox.push([ newDice, ]);
               }
 
@@ -119,11 +103,11 @@ module.exports = new Command({
             } else {
               dice = lastValue;
 
-              const dices = getDice(dice, type);
-              roll.rollBox.push(dices);
+              const dices = getDice(dice, type) as number[];
+              (roll.rollBox as number[][]).push(dices);
               roll.diceBox.push([ dice, ]);
 
-              roll.rollTotal.push([ dices.reduce((pre, crr) => pre + crr, 0), ]);
+              roll.rollTotal.push(dices.reduce((pre, crr) => pre + crr, 0));
             }
           } else {
             const mod = lastValue;
@@ -156,7 +140,7 @@ module.exports = new Command({
 
         for (let i = 0; i < roll.rollBox.length; i++) {
           const diceBox = roll.diceBox[i].join(', ');
-          const rollBox = roll.rollBox[i].join(', ');
+          const rollBox = (roll.rollBox[i] as number[]).join(', ');
           const rollTotal = roll.rollTotal[i];
 
           const string = `${diceBox} → **${rollTotal}** *(${rollBox})*\n`;
@@ -213,4 +197,4 @@ module.exports = new Command({
       resultArray = [];
     }
   },
-});
+};

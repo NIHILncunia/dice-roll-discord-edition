@@ -6,17 +6,19 @@ module.exports = {
     node: true,
     es2021: true,
   },
+  parser: '@typescript-eslint/parser',
   extends: [
     'airbnb-base',
     'plugin:import/errors',
     'plugin:import/warnings',
     'eslint:recommended',
+    'plugin:@typescript-eslint/recommended',
   ],
   parserOptions: {
     ecmaVersion: 2021,
     sourceType: 'module',
   },
-  plugins: [ 'import', ],
+  plugins: [ '@typescript-eslint', 'import', ],
   rules: {
     // 일반 규칙
     'no-console': 'off',
@@ -44,7 +46,7 @@ module.exports = {
     ],
     'object-curly-spacing': [ 'warn', 'always', ],
     'no-shadow': 'off',
-    indent: [ 'warn', 2, { SwitchCase: 1, }, ],
+    indent: 'off',
     'comma-dangle': [ 'warn', {
       arrays: 'always',
       functions: 'never',
@@ -69,5 +71,15 @@ module.exports = {
     'import/no-unresolved': 'off',
     'import/no-dynamic-require': 'off',
     'import/prefer-default-export': 'off',
+
+    // 타입스크립트 규칙
+    '@typescript-eslint/interface-name-prefix': 'off',
+    '@typescript-eslint/explicit-function-return-type': 'off',
+    '@typescript-eslint/explicit-module-boundary-types': 'off',
+    '@typescript-eslint/no-explicit-any': 'off',
+    '@typescript-eslint/no-var-requires': 'off',
+    '@typescript-eslint/ban-ts-comment': 'off',
+    '@typescript-eslint/no-unused-vars': 'off',
+    '@typescript-eslint/indent': [ 'warn', 2, { SwitchCase: 1, }, ],
   },
 };
