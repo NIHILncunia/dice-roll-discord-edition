@@ -1,14 +1,12 @@
-import { MessageEmbed } from 'discord.js';
-import config from '../../Data/bot.config';
-import { ICommand } from '../../Types';
-import getDate from '../../Utils/getDate';
+const { MessageEmbed, } = require('discord.js');
+const Command = require('../Structures/Command');
+const getDate = require('../utils/getDate');
 
-export const command: ICommand = {
+module.exports = new Command({
   id: 2,
   name: '정보',
-  description: `${config.name}의 정보를 보여줍니다.`,
-  aliases: [],
-  run: async (client, message) => {
+  description: 'DiceRoll에 대한 정보를 볼 수 있습니다.',
+  async run(message, args, client) {
     const embed = new MessageEmbed();
 
     embed
@@ -22,19 +20,19 @@ export const command: ICommand = {
       .setThumbnail(client.user.avatarURL({ dynamic: true, }))
       .addFields({
         name: '제작자',
-        value: `[${client.config.author}](https://github.com/NIHILncunia)`,
+        value: `[${client.author}](https://github.com/NIHILncunia)`,
         inline: true,
       }, {
         name: '버전',
-        value: client.config.version,
+        value: client.version,
         inline: true,
       }, {
         name: '최종수정일',
-        value: getDate(new Date(client.config.lastUpdate)),
+        value: getDate(new Date(client.lastUpdate)),
         inline: true,
       })
       .setColor('#bd0000');
 
     message.channel.send({ embeds: [ embed, ], });
   },
-};
+});

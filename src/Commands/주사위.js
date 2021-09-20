@@ -1,12 +1,11 @@
-import { MessageEmbed } from 'discord.js';
-import { ICommand } from '../../Types';
+const { MessageEmbed, } = require('discord.js');
+const Command = require('../Structures/Command');
 
-export const command: ICommand = {
-  id: 4,
+module.exports = new Command({
+  id: 5,
   name: '주사위',
-  description: 'DiceRoll에 대한 사용 가이드를 자세하게 볼 수 있습니다.',
-  aliases: [],
-  run: (client, message) => {
+  description: '주사위에 대한 사용 가이드를 자세하게 볼 수 있습니다.',
+  async run(message, args, client) {
     const embed = new MessageEmbed();
 
     embed
@@ -27,4 +26,4 @@ export const command: ICommand = {
 
     message.channel.send({ embeds: [ embed, ], });
   },
-};
+});

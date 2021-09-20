@@ -1,4 +1,7 @@
-const getDate = (date: Date) => {
+/**
+ * @param {Date} date
+ */
+module.exports = (date) => {
   const UTC = date.getTime() + (date.getTimezoneOffset() * 60 * 1000);
   const KR_TIME_DIFF = 9 * 60 * 60 * 1000;
   const UTC9Time = new Date(UTC + KR_TIME_DIFF);
@@ -9,5 +12,3 @@ const getDate = (date: Date) => {
 
   return `${YYYY}-${MM.toString().padStart(2, '0')}-${DD.toString().padStart(2, '0')}`;
 };
-
-export default getDate;
