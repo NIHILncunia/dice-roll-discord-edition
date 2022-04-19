@@ -171,7 +171,7 @@ module.exports = new Command({
 
         const result = (
           `\n**[ 총합 ]**\n`
-          + `${subValue} → **${totalResult + modTotal}**\n`
+          + `${subValue.replace('*', '×')} → **${totalResult + modTotal}**\n`
           + `\n**[ 상세 결과 ]**\n`
           + `${rollResult.join('')}`
           + `\n**[ 보정치 ]**\n`
