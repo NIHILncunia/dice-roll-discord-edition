@@ -1,0 +1,30 @@
+{
+  "name": "dice-roll-discord-edition",
+  "version": "2.1.1",
+  "description": "",
+  "main": "src/client.js",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/NIHILncunia/dice-roll-discord-edition.git"
+  },
+  "bugs": {
+    "url": "https://github.com/NIHILncunia/dice-roll-discord-edition/issues"
+  },
+  "homepage": "https://github.com/NIHILncunia/dice-roll-discord-edition#readme",
+  "scripts": {
+    "start": "nodemon src/index.js"
+  },
+  "keywords": [],
+  "author": "NIHILncunia",
+  "license": "MIT",
+  "dependencies": {
+    "discord.js": "^13.6.0",
+    "dotenv": "^16.0.0"
+  },
+  "devDependencies": {
+    "eslint": "^8.13.0",
+    "eslint-config-airbnb": "^19.0.4",
+    "eslint-plugin-import": "^2.26.0",
+    "nodemon": "^2.0.15"
+  }
+}
