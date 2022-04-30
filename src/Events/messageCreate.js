@@ -12,7 +12,8 @@ module.exports = new Event('messageCreate', (client, message) => {
   const userId = `<@${message.author.id}>`;
 
   // 대조를 했을 때 명령어가 존재하지 않으면 값이 없기 때문에 없을 경우에는 없다고 알려준다.
-  if (!command) return message.channel.send(`${userId} ***${args[0]}***라는 명령어는 존재하지 않습니다.`);
+  // if (!command) return message.channel.send(`${userId} ***${args[0]}***라는 명령어는 존재하지 않습니다.`);
+  if (!command) return;
 
   // 값이 존재하면 함수를 실행해서 해당 명령어의 기능을 수행한다.
   command.run(message, args, client, userId);
